@@ -42,14 +42,14 @@ namespace PredatorPrey
 
                 if (next == "") // all have moved
                 {
-                    int noWolves, noSheep;
-                    _worldEnv.CountCreatures(out noWolves, out noSheep);
+                    int noWolves, noSheep, noGrass;
+                    _worldEnv.CountCreatures(out noWolves, out noSheep, out noGrass);
 
-                    string toWrite = String.Format("Turn {0}:    {1} sheep    {2} wolves", _turn, noSheep, noWolves);
+                    string toWrite = String.Format("Turn {0}:    {1} sheep    {2} wolves    {3} grass", _turn, noSheep, noWolves, noGrass);
                     Console.WriteLine(toWrite);
                     WriteToUI(toWrite);
                     
-                    _worldEnv.UpdateUI(_turn, noSheep, noWolves);
+                    _worldEnv.UpdateUI(_turn, noSheep, noWolves, noGrass);
                     
                     if(_turn == Utils.NoTurns)
                     {
@@ -60,7 +60,7 @@ namespace PredatorPrey
                         return;
                     }
 
-                    if (noWolves == 0 && noSheep == 0)
+                    if (noWolves == 0 && noSheep == 0 && noGrass == 0)
                     {
                         string text = String.Format("\r\nSimulation finished. Both populations extinct.");
                         Console.WriteLine(text);
@@ -69,9 +69,9 @@ namespace PredatorPrey
                         return;
                     }
 
-                    if (noSheep == Utils.GridSize * Utils.GridSize)
+                    if (noSheep == Utils.GridSize * Utils.GridSize || noWolves == Utils.GridSize * Utils.GridSize || noGrass == Utils.GridSize * Utils.GridSize)
                     {
-                        string text = String.Format("\r\nSimulation finished. Prey population increased uncontrollably.");
+                        string text = String.Format("\r\nSimulation finished. One population increased uncontrollably.");
                         Console.WriteLine(text);
                         WriteToUI(text);
                         //this.Environment.StopAll();

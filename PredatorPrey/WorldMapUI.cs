@@ -7,6 +7,7 @@ namespace PredatorPrey
     {
         Image wolf = new Bitmap("wolf_red.png");
         Image sheep = new Bitmap("sheep_blue.png");
+        Image grass = new Bitmap("grass.png");
         int gridSizeX, gridSizeY;
         RectangleF[,] cellBoundingBoxes;
         Cell[,] map = null;
@@ -45,6 +46,11 @@ namespace PredatorPrey
             g.DrawImage(wolf, cellBoundingBoxes[gridX, gridY]);
         }
 
+        void DrawGrassAt(Graphics g, int gridX, int gridY)
+        {
+            g.DrawImage(grass, cellBoundingBoxes[gridX, gridY]);
+        }
+
         private void WorldMap_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -62,6 +68,10 @@ namespace PredatorPrey
 
                             case CellState.Wolf:
                                 DrawWolfAt(g, x, y);
+                                break;
+
+                            case CellState.Grass:
+                                DrawGrassAt(g, x, y);
                                 break;
                         }
                     }

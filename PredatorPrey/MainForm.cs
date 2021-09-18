@@ -38,9 +38,9 @@ namespace PredatorPrey
             textBox.ScrollToCaret();
         }
 
-        public void UpdatePlot(int currentTurn, int currentNrSheep, int currentNrWolves)
+        public void UpdatePlot(int currentTurn, int currentNrSheep, int currentNrWolves, int currentNrGrass)
         {
-            plot.UpdatePlot(currentTurn, currentNrSheep, currentNrWolves);
+            plot.UpdatePlot(currentTurn, currentNrSheep, currentNrWolves, currentNrGrass);
         }
 
     }

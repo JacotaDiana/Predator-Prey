@@ -25,7 +25,14 @@
                 worldEnv.Add(a, worldEnv.CreateName(a));
                 worldEnv.AddAgentToMap(a, randVect[i]);
             }
-            
+
+            for (int i = Utils.NoWolves + Utils.NoSheep; i < Utils.NoWolves + Utils.NoSheep + Utils.NoGrass; i++)
+            {
+                var a = new GrassAgent();
+                worldEnv.Add(a, worldEnv.CreateName(a)); // unique name
+                worldEnv.AddAgentToMap(a, randVect[i]);
+            }
+
             var s = new SchedulerAgent();
             worldEnv.Add(s, "scheduler");
 
